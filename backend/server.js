@@ -55,7 +55,7 @@ const options = {
 app.use(express.static(path.join(__dirname, './public'), options));
 
 // Use Routes
-app.use('/api/v1/meme', memes)
+app.use('/memes', memes)
 
 const root = require('path').join(__dirname, 'public', 'build')
 app.use(express.static(root));
