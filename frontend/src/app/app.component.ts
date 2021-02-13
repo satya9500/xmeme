@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormComponent } from './form/form.component';
+import { NbWindowService } from '@nebular/theme';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
+  constructor(private windowService: NbWindowService) { }
+  openWindow() {
+    this.windowService.open(FormComponent, { title: `Add Meme to your Arsenal` });
+  }
 }
