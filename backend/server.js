@@ -16,7 +16,8 @@ connectDB();
 require('colors');
 
 // route files
-const memes = require('./api/memes/')
+const memes = require('./api/memes/');
+const asyncHandler = require('./middleware/async');
 
 const app = express();
 
@@ -41,26 +42,32 @@ app.options('*', cors());
 // file Upload
 app.use(fileUpload());
 
-const options = {
-  dotfiles: 'ignore',
-  etag: false,
-  extensions: ['htm', 'html'],
-  maxAge: '1d',
-  redirect: false,
-  setHeaders: function (res, path, stat) {
-    res.set('x-timestamp', Date.now());
-  },
-};
+// const options = {
+//   dotfiles: 'ignore',
+//   etag: false,
+//   extensions: ['htm', 'html'],
+//   maxAge: '1d',
+//   redirect: false,
+//   setHeaders: function (res, path, stat) {
+//     res.set('x-timestamp', Date.now());
+//   },
+// };
 
-app.use(express.static(path.join(__dirname, './public'), options));
+// app.use(express.static(path.join(__dirname, './public'), options));
 
 // Use Routes
+app.get('/', (req, res, next) => {
+  return res.redirect('/memes')
+})
 app.use('/memes', memes)
 
-const root = require('path').join(__dirname, 'public', 'frontend')
-app.use(express.static(root));
+// const root = require('path').join(__dirname, 'public', 'frontend')
+// app.use(express.static(root));
 app.get("*", (req, res) => {
-  res.sendFile('index.html', { root });
+  return res.status(404).json({
+    success: false,
+    message: `The api you are looking for doesn't exist`
+  });
 })
 
 app.use(errorHandler);
