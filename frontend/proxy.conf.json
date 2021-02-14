@@ -1,6 +1,6 @@
 {
   "/memes": {
-    "target": "http://localhost:5000",
+    "target": "http://40.121.48.111",
     "secure": false
   }
 }
