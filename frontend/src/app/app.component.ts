@@ -4,6 +4,7 @@ import { FormComponent } from './form/form.component';
 import { NbWindowService } from '@nebular/theme';
 import { FetchService } from './services/fetch.service';
 import { DeleteService } from './services/delete.service';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import { DeleteService } from './services/delete.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private windowService: NbWindowService, private fetch: FetchService, private remove: DeleteService) {
+  constructor(private windowService: NbWindowService, private fetch: FetchService, private remove: DeleteService, private toastrService: NbToastrService) {
   }
   allMemes = [];
   loading = false;
@@ -28,14 +29,18 @@ export class AppComponent implements OnInit {
     this.windowService.open(FormComponent, { title: `Add Meme to your Arsenal` }).onClose.subscribe((res: any) => {
       this.loading = false;
       this.ngOnInit();
+      this.showToast('', 'Meme Added Successfully', { duration: 5000, destroyByClick: true, status: 'success' });
     })
   }
   deleteMeme(id: string) {
     this.loading = true;
     this.remove.deleteMeme(id).subscribe((res: any) => {
-      console.log(res);
       this.loading = false;
       this.ngOnInit();
+    }, (err: any) => {
+      this.showToast('',
+        err.error.error,
+        { duration: 5000, destroyByClick: true, status: 'danger' });
     })
   }
 
@@ -47,5 +52,9 @@ export class AppComponent implements OnInit {
         this.ngOnInit();
       })
     })
+  }
+
+  showToast(text, heading, options) {
+    this.toastrService.show(text, heading, options);
   }
 }
