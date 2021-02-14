@@ -5,9 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router'; // we also need angular router for Nebular to function properly
 import { NbThemeModule, NbFormFieldModule } from '@nebular/theme';
-import { NbSidebarModule, NbLayoutModule, NbButtonModule, NbCardModule, NbInputModule, NbWindowModule, NbIconModule } from '@nebular/theme';
+import { NbSidebarModule, NbSpinnerModule, NbLayoutModule, NbButtonModule, NbCardModule, NbInputModule, NbWindowModule, NbIconModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FormComponent } from './form/form.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,6 +19,8 @@ import { FormComponent } from './form/form.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     NbThemeModule.forRoot(),
     RouterModule, // RouterModule.forRoot(routes, { useHash: true }), if this is your app.module
@@ -28,8 +32,9 @@ import { FormComponent } from './form/form.component';
     NbInputModule,
     NbWindowModule.forRoot(),
     NbFormFieldModule,
-    NbIconModule
-
+    NbIconModule,
+    HttpClientModule,
+    NbSidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

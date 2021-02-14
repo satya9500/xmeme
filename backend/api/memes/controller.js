@@ -22,7 +22,7 @@ exports.postMeme = asyncHandler(async (req, res, next) => {
 // @description : Get all memes
 exports.getMemes = asyncHandler(async (req, res, next) => {
   const page = req.query.page;
-  const memes = await Meme.find().skip((page - 1) * 100).limit(100);
+  const memes = await Meme.find().skip((page - 1) * 100).limit(100).sort({ creationDate: -1 });
   return res.status(200).json({
     success: true,
     count: memes.length,

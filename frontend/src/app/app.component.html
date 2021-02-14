@@ -1,20 +1,36 @@
-<nb-layout>
-  <nb-layout-header fixed>
-    <h3>XMeme</h3>
-    <button (click)="openWindow()" nbButton outline status="primary">Add Meme</button>
+<nb-layout responsive>
+  <nb-layout-header fixed class="row" responsive>
+    <div class="col-6">
+      <h3>XMeme</h3>
+    </div>
+    <div class="col-6">
+      <button class="float-right" (click)="addMeme()" nbButton outline status="primary">Add Meme</button>
+    </div>
   </nb-layout-header>
 
-  <nb-layout-column>
-    <div class="container">
-      <nb-card style="width:fit-content;">
-        <nb-card-header>Caption</nb-card-header>
-        <nb-card-body>
-          <img
-            src="https://cdn.vox-cdn.com/thumbor/cV8X8BZ-aGs8pv3D-sCMr5fQZyI=/1400x1400/filters:format(png)/cdn.vox-cdn.com/uploads/chorus_asset/file/19933026/image.png"
-            style="max-height: 400px;">
-        </nb-card-body>
-        <nb-card-footer>By Author</nb-card-footer>
-      </nb-card>
+  <nb-layout-column responsive>
+    <div>
+      <div class="row">
+        <nb-card *ngFor="let meme of allMemes" class="col-md-4 col-sm-12" [nbSpinner]="loading">
+          <nb-card-header class="row">
+            <div class="col-6">
+              {{meme.caption}}
+            </div>
+            <div class="col-6">
+              <button (click)="deleteMeme(meme._id)" nbButton status="danger" class="float-right">
+                <nb-icon nbPrefix icon="trash-2-outline" pack="eva"></nb-icon>
+              </button>
+              <button (click)="editMeme(meme._id)" nbButton status="warning" class="float-right mr-3">
+                <nb-icon nbPrefix icon="edit-2-outline" pack="eva"></nb-icon>
+              </button>
+            </div>
+          </nb-card-header>
+          <nb-card-body>
+            <img [src]="meme.url" width="100%" style="max-height: 350px;min-height: 350px;" [alt]="meme.url">
+          </nb-card-body>
+          <nb-card-footer>By {{meme.name}}</nb-card-footer>
+        </nb-card>
+      </div>
     </div>
   </nb-layout-column>
 </nb-layout>

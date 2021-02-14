@@ -4,10 +4,10 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class PostService {
+export class DeleteService {
 
   constructor(private http: HttpClient) { }
-  postMeme(data): any {
-    return this.http.post(`/memes`, data);
+  deleteMeme(id: string) {
+    return this.http.delete(`/memes/${id}`);
   }
 }
