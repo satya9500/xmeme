@@ -28,7 +28,7 @@ export class FormComponent implements OnInit {
 
   memeForm = this.formBuilder.group({
     name: [null, [Validators.required, Validators.minLength(3)]],
-    url: [null, [Validators.required, Validators.minLength(10)]],
+    url: [null, [Validators.required, Validators.minLength(3)]],
     caption: [null],
   });
   loading = false;

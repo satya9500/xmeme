@@ -4,7 +4,6 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const cors = require('cors');
 const hpp = require('hpp');
-const fileUpload = require('express-fileupload');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
 
@@ -39,21 +38,6 @@ app.use(hpp());
 // cors
 app.use(cors());
 app.options('*', cors());
-// file Upload
-app.use(fileUpload());
-
-// const options = {
-//   dotfiles: 'ignore',
-//   etag: false,
-//   extensions: ['htm', 'html'],
-//   maxAge: '1d',
-//   redirect: false,
-//   setHeaders: function (res, path, stat) {
-//     res.set('x-timestamp', Date.now());
-//   },
-// };
-
-// app.use(express.static(path.join(__dirname, './public'), options));
 
 // Use Routes
 app.get('/', (req, res, next) => {
@@ -61,8 +45,6 @@ app.get('/', (req, res, next) => {
 })
 app.use('/memes', memes)
 
-// const root = require('path').join(__dirname, 'public', 'frontend')
-// app.use(express.static(root));
 app.get("*", (req, res) => {
   return res.status(404).json({
     success: false,
@@ -78,6 +60,4 @@ app.listen(PORT, console.log(`Server running on port ${PORT}`.yellow.bold));
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err, promise) => {
   console.log(`Error: ${err.message}`.red);
-  // Close server & exit process
-  // server.close(() => process.exit(1));
 });

@@ -9,7 +9,7 @@
   </nb-layout-header>
 
   <nb-layout-column responsive>
-    <div>
+    <div *ngIf="allMemes.length > 0">
       <div class="row">
         <nb-card *ngFor="let meme of allMemes" class="col-md-4 col-sm-12" [nbSpinner]="loading">
           <nb-card-header class="row">
@@ -31,6 +31,9 @@
           <nb-card-footer>By {{meme.name}}</nb-card-footer>
         </nb-card>
       </div>
+    </div>
+    <div *ngIf="allMemes.length == 0">
+      No memes found
     </div>
   </nb-layout-column>
 </nb-layout>
