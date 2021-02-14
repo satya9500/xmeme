@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   backend: {
-    baseURL: "http://40.121.48.111"
+    baseURL: "https://satya-xmeme-backend.aitoss.club"
   }
 };
