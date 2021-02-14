@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
     this.loading = true;
     this.fetch.getMeme(id).subscribe((res: any) => {
       this.loading = false;
-      this.windowService.open(FormComponent, { title: `Edit meme`, context: res.meme }).onClose.subscribe((res: any) => {
+      this.windowService.open(FormComponent, { title: `Edit this published meme`, context: res.meme }).onClose.subscribe((res: any) => {
         this.ngOnInit();
       })
     })
