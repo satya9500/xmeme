@@ -51,21 +51,21 @@ export class FormComponent implements OnInit {
     this.loading = true;
     if (this.mode == "add") {
       this.post.postMeme(this.memeForm.value).subscribe((res: any) => {
-        this.showToast('', 'Meme Deleted Successfully', { duration: 5000, destroyByClick: true, status: 'success' });
+        this.showToast('', 'Meme Added Successfully', { duration: 2000, destroyByClick: true, status: 'success' });
         this.ref.close();
       }, (err: any) => {
         this.showToast('',
           err.error.error,
-          { duration: 5000, destroyByClick: true, status: 'danger' });
+          { duration: 2000, destroyByClick: true, status: 'danger' });
       })
     } else if (this.mode == "edit") {
       this.update.updateMeme(this.id, this.memeForm.value).subscribe((res: any) => {
-        this.showToast('', 'Meme Edited Successfully', { duration: 5000, destroyByClick: true, status: 'success' });
+        this.showToast('', 'Meme Edited Successfully', { duration: 2000, destroyByClick: true, status: 'success' });
         this.ref.close();
       }, (err: any) => {
         this.showToast('',
           err.error.error,
-          { duration: 5000, destroyByClick: true, status: 'danger' });
+          { duration: 2000, destroyByClick: true, status: 'danger' });
       })
     }
     this.loading = false;

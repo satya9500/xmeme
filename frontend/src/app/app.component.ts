@@ -29,12 +29,12 @@ export class AppComponent implements OnInit {
     this.windowService.open(FormComponent, { title: `Add Meme to your Arsenal` }).onClose.subscribe((res: any) => {
       this.loading = false;
       this.ngOnInit();
-      this.showToast('', 'Meme Added Successfully', { duration: 5000, destroyByClick: true, status: 'success' });
     })
   }
   deleteMeme(id: string) {
     this.loading = true;
     this.remove.deleteMeme(id).subscribe((res: any) => {
+      this.showToast('', 'Meme Deleted Successfully', { duration: 2000, destroyByClick: true, status: 'success' });
       this.loading = false;
       this.ngOnInit();
     }, (err: any) => {

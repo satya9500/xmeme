@@ -57,7 +57,7 @@ app.use(express.static(path.join(__dirname, './public'), options));
 // Use Routes
 app.use('/memes', memes)
 
-const root = require('path').join(__dirname, 'public', 'build')
+const root = require('path').join(__dirname, 'public', 'frontend')
 app.use(express.static(root));
 app.get("*", (req, res) => {
   res.sendFile('index.html', { root });
