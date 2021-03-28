@@ -39,17 +39,13 @@ app.use(hpp());
 app.use(cors());
 app.options('*', cors());
 
-// Use Routes
-app.get('/', (req, res, next) => {
-  return res.redirect('/memes')
-})
 app.use('/memes', memes)
 
-app.get("*", (req, res) => {
-  return res.status(404).json({
-    success: false,
-    message: `The api you are looking for doesn't exist`
-  });
+// All other routes should redirect to the index.html
+app.get('*.*', express.static('./public/frontend')); //production
+
+app.all('*', (req, res) => {
+  res.status(200).sendFile('/', { root: './public/frontend' }) //production
 })
 
 app.use(errorHandler);

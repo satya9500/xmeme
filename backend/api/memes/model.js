@@ -13,10 +13,6 @@ const meme = new mongoose.Schema({
     type: String,
     lowercase: true,
     trim: true,
-  },
-  creationDate: {
-    type: Date,
-    default: Date.now
   }
 });
 
