@@ -6,9 +6,9 @@ You can see the project live [here](https://satya-xmeme-frontend.aitoss.club/)
 
 The backend and frontend are deployed separately.
 
-Frontend: [https://satya-xmeme-frontend.aitoss.club/](https://satya-xmeme-frontend.aitoss.club/)
+Frontend: [xmeme-frontend](https://satya-xmeme-frontend.aitoss.club/)
 
-Backend: [https://satya-xmeme-backend.aitoss.club/](https://satya-xmeme-backend.aitoss.club/)
+Backend: [xmeme-backend](https://satya-xmeme-backend.aitoss.club/)
 
 ### Tech Stack used
 + Angular
