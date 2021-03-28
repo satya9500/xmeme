@@ -1,2 +1,2 @@
-sleep.sh
-test_server.sh
+./sleep.sh
+./test_server.sh
